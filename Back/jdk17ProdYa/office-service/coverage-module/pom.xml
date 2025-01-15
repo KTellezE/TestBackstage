@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.axity</groupId>
+    <artifactId>office</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <packaging>jar</packaging>
+  <groupId>com.axity</groupId>
+  <artifactId>coverage-module</artifactId>
+  <name>coverage-module</name>
+   <description>coverage-module</description>
+    <properties>
+        <java.version>1.17</java.version>
+    </properties>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>com.axity</groupId>
+      <artifactId>office-api</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.axity</groupId>
+      <artifactId>office-commons</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.axity</groupId>
+      <artifactId>office-facade</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.axity</groupId>
+      <artifactId>office-model</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.axity</groupId>
+      <artifactId>office-persistence</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.axity</groupId>
+      <artifactId>office-service</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>com/axity/office/model/*</exclude>
+                        <exclude>com/axity/office/**/*Dto.*</exclude>
+                        <exclude>com/axity/office/commons/messages/*</exclude>
+                        <exclude>com/axity/office/Application.*</exclude>
+                        <exclude>com/axity/office/commons/aspectj/*</exclude>
+                    </excludes>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>jacoco-site-aggregate</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
